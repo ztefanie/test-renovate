@@ -1,0 +1,974 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.camunda</groupId>
+    <artifactId>camunda-release-parent</artifactId>
+    <version>3.9.1</version>
+    <!-- do not remove empty tag - http://jira.codehaus.org/browse/MNG-4687 -->
+    <relativePath/>
+  </parent>
+
+  <groupId>io.camunda.connector</groupId>
+  <artifactId>connector-parent</artifactId>
+  <version>8.8.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>Camunda Connector Parent</name>
+  <description>${project.name}</description>
+  <inceptionYear>2022</inceptionYear>
+
+  <url>https://github.com/camunda/connectors</url>
+
+  <scm>
+    <connection>scm:git:git@github.com:camunda/connectors.git</connection>
+    <developerConnection>scm:git:git@github.com:camunda/connectors.git</developerConnection>
+    <tag>HEAD</tag>
+    <url>https://github.com/camunda/connectors</url>
+  </scm>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/camunda/connectors/issues</url>
+  </issueManagement>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+  <properties>
+    <!-- Java version for everything except Connector SDK -->
+    <version.java>21</version.java>
+    <!-- Java version for Connector SDK -->
+    <version.java.connector-sdk>17</version.java.connector-sdk>
+    <maven.compiler.target>${version.java}</maven.compiler.target>
+    <maven.compiler.source>${version.java}</maven.compiler.source>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- an inline header will allow usage in downstream connectors -->
+    <license.inlineheader>Copyright Camunda Services GmbH and/or licensed to Camunda Services GmbH
+under one or more contributor license agreements. See the NOTICE file
+distributed with this work for additional information regarding copyright
+ownership. Camunda licenses this file to you under the Apache License,
+Version 2.0; you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</license.inlineheader>
+
+    <!-- release parent settings -->
+    <nexus.snapshot.repository>https://artifacts.camunda.com/artifactory/connectors-snapshots/</nexus.snapshot.repository>
+    <nexus.release.repository>https://artifacts.camunda.com/artifactory/connectors/</nexus.release.repository>
+    <nexus.sonatype.url>https://s01.oss.sonatype.org</nexus.sonatype.url>
+
+    <!-- Camunda internal libraries -->
+    <version.camunda>8.8.0-SNAPSHOT</version.camunda>
+    <version.feel-engine>1.19.1</version.feel-engine>
+
+    <!-- Third party dependencies -->
+
+    <version.jakarta-validation>3.1.1</version.jakarta-validation>
+    <version.mockito>5.16.1</version.mockito>
+    <version.junit-jupiter>5.12.1</version.junit-jupiter>
+    <version.assertj>3.27.3</version.assertj>
+    <version.jackson-bom>2.18.3</version.jackson-bom>
+    <version.jackson-datatype-jsr310>2.18.3</version.jackson-datatype-jsr310>
+    <version.hibernate-validator>8.0.2.Final</version.hibernate-validator>
+    <version.jsonassert>1.5.3</version.jsonassert>
+    <version.failsafe>3.3.2</version.failsafe>
+
+    <version.spring-boot>3.4.4</version.spring-boot>
+    <version.spring-cloud-gcp-starter-logging>5.11.3</version.spring-cloud-gcp-starter-logging>
+    <version.logback>1.5.18</version.logback>
+
+    <version.aws-java-sdk>1.12.782</version.aws-java-sdk>
+    <version.software-aws-java-sdk>2.31.14</version.software-aws-java-sdk>
+    <version.aws-java-sdk-sts>1.12.782</version.aws-java-sdk-sts>
+    <version.software-aws-java-sdk-sts>2.31.14</version.software-aws-java-sdk-sts>
+    <version.aws-lambda-java-events>3.15.0</version.aws-lambda-java-events>
+    <version.aws-lambda-java-core>1.2.3</version.aws-lambda-java-core>
+
+
+    <version.localstack>1.20.6</version.localstack>
+
+    <version.google-api-client>2.7.2</version.google-api-client>
+    <version.google-api-services-drive>v3-rev20250220-2.0.0</version.google-api-services-drive>
+    <version.google-oauth-client-jetty>1.39.0</version.google-oauth-client-jetty>
+    <version.google-auth-library-oauth2-http>1.33.1</version.google-auth-library-oauth2-http>
+    <version.google-api-services-docs>v1-rev20250218-2.0.0</version.google-api-services-docs>
+    <version.google-api-services-sheets>v4-rev20250211-2.0.0</version.google-api-services-sheets>
+    <version.google-libraries-bom>26.59.0</version.google-libraries-bom>
+    <version.google-cloud-storage>2.50.0</version.google-cloud-storage>
+    <version.gson-extras>3.1.0</version.gson-extras>
+
+    <version.httpcore>4.4.16</version.httpcore>
+    <version.httpcore5>5.3.4</version.httpcore5>
+    <version.httpclient5>5.4.3</version.httpclient5>
+    <version.pdfbox>3.0.4</version.pdfbox>
+    <version.collections4>4.5.0-M3</version.collections4>
+
+    <version.commons-io>2.18.0</version.commons-io>
+    <version.commons-codec>1.16.1</version.commons-codec>
+
+    <version.kafka-clients>3.9.0</version.kafka-clients>
+
+    <version.microsoft-graph>6.34.0</version.microsoft-graph>
+    <version.azure-identity>1.15.4</version.azure-identity>
+
+    <version.bouncycastle>1.80</version.bouncycastle>
+    <version.box-sdk>4.15.3</version.box-sdk>
+
+    <version.sendGrid>4.10.3</version.sendGrid>
+
+    <version.slack>1.45.3</version.slack>
+
+    <version.testcontainers>1.20.6</version.testcontainers>
+    <version.awaitility>4.3.0</version.awaitility>
+    <version.json-path>2.9.0</version.json-path>
+
+    <version.snappy-java>1.1.10.7</version.snappy-java>
+    <version.commons-codec>1.18.0</version.commons-codec>
+    <version.guava>33.4.6-jre</version.guava>
+    <version.javax.xml.bind>2.4.0-b180830.0359</version.javax.xml.bind>
+
+    <version.wiremock>3.12.1</version.wiremock>
+    <version.auth0.jwt>4.5.0</version.auth0.jwt>
+    <version.auth0.jwks>0.22.1</version.auth0.jwks>
+
+    <!-- maven plugins (not managed by parent) -->
+    <plugin.version.maven-enforcer-plugin>3.1.0</plugin.version.maven-enforcer-plugin>
+    <plugin.version.maven-exec-plugin>3.5.0</plugin.version.maven-exec-plugin>
+    <plugin.version.maven-install-plugin>3.1.4</plugin.version.maven-install-plugin>
+    <plugin.version.license>5.0.0</plugin.version.license>
+    <plugin.version.license.codehaus>2.5.0</plugin.version.license.codehaus>
+    <plugin.version.maven-resources-plugin>3.2.0</plugin.version.maven-resources-plugin>
+    <plugin.version.maven-shade-plugin>3.6.0</plugin.version.maven-shade-plugin>
+    <plugin.version.maven-surefire-plugin>3.5.3</plugin.version.maven-surefire-plugin>
+    <plugin.version.spotless-maven-plugin>2.44.3</plugin.version.spotless-maven-plugin>
+    <plugin.version.maven-jar-plugin>3.4.2</plugin.version.maven-jar-plugin>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- Jackson BOM -->
+      <dependency>
+        <groupId>com.fasterxml.jackson</groupId>
+        <artifactId>jackson-bom</artifactId>
+        <version>${version.jackson-bom}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-jsr310</artifactId>
+        <version>${version.jackson-datatype-jsr310}</version>
+      </dependency>
+
+      <!-- Spring Boot BOM -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${version.spring-boot}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>${version.logback}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${version.logback}</version>
+      </dependency>
+
+      <!-- Google libraries BOM -->
+      <dependency>
+        <groupId>com.google.cloud</groupId>
+        <artifactId>libraries-bom</artifactId>
+        <version>${version.google-libraries-bom}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <!-- Camunda internal dependencies -->
+      <dependency>
+        <groupId>io.camunda.connector</groupId>
+        <artifactId>connector-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.camunda.connector</groupId>
+        <artifactId>connector-test</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.camunda.connector</groupId>
+        <artifactId>connector-validation</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.camunda.connector</groupId>
+        <artifactId>connector-feel-wrapper</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.camunda.connector</groupId>
+        <artifactId>jackson-datatype-feel</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.camunda.connector</groupId>
+        <artifactId>connector-gcp-security-manager</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.camunda.connector</groupId>
+        <artifactId>connector-runtime-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.camunda.connector</groupId>
+        <artifactId>connector-runtime-spring</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.camunda.connector</groupId>
+        <artifactId>element-template-generator-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.camunda.connector</groupId>
+        <artifactId>element-template-generator-http-dsl</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.camunda.connector</groupId>
+        <artifactId>openapi-parser</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.camunda.connector</groupId>
+        <artifactId>postman-collections-parser</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.camunda.connector</groupId>
+        <artifactId>connector-document</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.camunda</groupId>
+        <artifactId>spring-boot-starter-camunda-sdk</artifactId>
+        <version>${version.camunda}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.camunda</groupId>
+        <artifactId>camunda-java</artifactId>
+        <version>${version.camunda}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.camunda</groupId>
+        <artifactId>zeebe-bpmn-model</artifactId>
+        <version>${version.camunda}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.camunda.feel</groupId>
+        <artifactId>feel-engine</artifactId>
+        <version>${version.feel-engine}</version>
+      </dependency>
+
+      <!-- Third party dependencies -->
+      <dependency>
+        <groupId>jakarta.validation</groupId>
+        <artifactId>jakarta.validation-api</artifactId>
+        <version>${version.jakarta-validation}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.hibernate.validator</groupId>
+        <artifactId>hibernate-validator</artifactId>
+        <version>${version.hibernate-validator}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.google.cloud</groupId>
+        <artifactId>spring-cloud-gcp-starter-logging</artifactId>
+        <version>${version.spring-cloud-gcp-starter-logging}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.google.cloud</groupId>
+        <artifactId>spring-cloud-gcp-logging</artifactId>
+        <version>${version.spring-cloud-gcp-starter-logging}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-lambda</artifactId>
+        <version>${version.aws-java-sdk}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-sns</artifactId>
+        <version>${version.aws-java-sdk}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-sqs</artifactId>
+        <version>${version.aws-java-sdk}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-sagemakerruntime</artifactId>
+        <version>${version.aws-java-sdk}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-sagemaker</artifactId>
+        <version>${version.aws-java-sdk}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.google.api-client</groupId>
+        <artifactId>google-api-client</artifactId>
+        <version>${version.google-api-client}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.apis</groupId>
+        <artifactId>google-api-services-drive</artifactId>
+        <version>${version.google-api-services-drive}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.oauth-client</groupId>
+        <artifactId>google-oauth-client-jetty</artifactId>
+        <version>${version.google-oauth-client-jetty}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.auth</groupId>
+        <artifactId>google-auth-library-oauth2-http</artifactId>
+        <version>${version.google-auth-library-oauth2-http}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.apis</groupId>
+        <artifactId>google-api-services-docs</artifactId>
+        <version>${version.google-api-services-docs}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.apis</groupId>
+        <artifactId>google-api-services-sheets</artifactId>
+        <version>${version.google-api-services-sheets}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.danilopianini</groupId>
+        <artifactId>gson-extras</artifactId>
+        <version>${version.gson-extras}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpcore</artifactId>
+        <version>${version.httpcore}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.httpcomponents.client5</groupId>
+        <artifactId>httpclient5</artifactId>
+        <version>${version.httpclient5}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.httpcomponents.core5</groupId>
+        <artifactId>httpcore5</artifactId>
+        <version>${version.httpcore5}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-collections4</artifactId>
+        <version>${version.collections4}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>kafka-clients</artifactId>
+        <version>${version.kafka-clients}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.microsoft.graph</groupId>
+        <artifactId>microsoft-graph</artifactId>
+        <version>${version.microsoft-graph}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.azure</groupId>
+        <artifactId>azure-identity</artifactId>
+        <version>${version.azure-identity}</version>
+        <scope>compile</scope>
+        <exclusions>
+          <exclusion>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-resolver-dns-native-macos</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>com.sendgrid</groupId>
+        <artifactId>sendgrid-java</artifactId>
+        <version>${version.sendGrid}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.slack.api</groupId>
+        <artifactId>slack-api-client</artifactId>
+        <version>${version.slack}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.slack.api</groupId>
+        <artifactId>slack-api-model</artifactId>
+        <version>${version.slack}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.slack.api</groupId>
+        <artifactId>slack-app-backend</artifactId>
+        <version>${version.slack}</version>
+      </dependency>
+
+      <!-- This dependency will be removed after camunda/zeebe#9859 is resolved. -->
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-text</artifactId>
+        <version>1.13.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>3.17.0</version>
+      </dependency>
+
+      <!-- Fixes CWE-770 -->
+      <dependency>
+        <groupId>com.nimbusds</groupId>
+        <artifactId>nimbus-jose-jwt</artifactId>
+        <version>10.0.2</version>
+      </dependency>
+
+      <!-- Fixes CWE-835 -->
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-compress</artifactId>
+        <version>1.27.1</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.google.protobuf</groupId>
+        <artifactId>protobuf-java</artifactId>
+        <version>4.30.2</version>
+      </dependency>
+
+      <!-- Fix CVE-2024-7254 -->
+      <dependency>
+        <groupId>com.google.protobuf</groupId>
+        <artifactId>protobuf-java-util</artifactId>
+        <version>4.30.2</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcpkix-jdk18on</artifactId>
+        <version>${version.bouncycastle}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcprov-jdk18on</artifactId>
+        <version>${version.bouncycastle}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>dev.failsafe</groupId>
+        <artifactId>failsafe</artifactId>
+        <version>${version.failsafe}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.box</groupId>
+        <artifactId>box-java-sdk</artifactId>
+        <version>${version.box-sdk}</version>
+      </dependency>
+
+      <!-- test dependencies -->
+      <dependency>
+        <groupId>io.camunda</groupId>
+        <artifactId>camunda-process-test-spring</artifactId>
+        <version>${version.camunda}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>${version.junit-jupiter}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>${version.mockito}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-junit-jupiter</artifactId>
+        <version>${version.mockito}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.assertj</groupId>
+        <artifactId>assertj-core</artifactId>
+        <version>${version.assertj}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.skyscreamer</groupId>
+        <artifactId>jsonassert</artifactId>
+        <version>${version.jsonassert}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>testcontainers</artifactId>
+        <version>${version.testcontainers}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>${version.testcontainers}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.awaitility</groupId>
+        <artifactId>awaitility</artifactId>
+        <version>${version.awaitility}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.jayway.jsonpath</groupId>
+        <artifactId>json-path</artifactId>
+        <version>${version.json-path}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.wiremock</groupId>
+        <artifactId>wiremock-standalone</artifactId>
+        <version>${version.wiremock}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <repositories>
+    <repository>
+     <id>confluent</id>
+     <url>https://packages.confluent.io/maven/</url>
+    </repository>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>connectors</id>
+      <name>Connectors Repository</name>
+      <url>https://artifacts.camunda.com/artifactory/connectors/</url>
+    </repository>
+
+    <repository>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>connectors-snapshots</id>
+      <name>Connectors Snapshot Repository</name>
+      <url>https://artifacts.camunda.com/artifactory/connectors-snapshots/</url>
+    </repository>
+
+    <repository>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>zeebe-snapshots</id>
+      <name>Zeebe Snapshot Repository</name>
+      <url>https://artifacts.camunda.com/artifactory/zeebe-io-snapshots/</url>
+    </repository>
+
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>identity</id>
+      <name>Identity Repository</name>
+      <url>https://artifacts.camunda.com/artifactory/camunda-identity/</url>
+    </repository>
+
+    <!-- opensaml dependencies for soap connector -->
+    <repository>
+      <id>shibboleth</id>
+      <name>Shibboleth Releases Repository</name>
+      <url>https://build.shibboleth.net/maven/releases/</url>
+      <releases>
+        <enabled>true</enabled>
+        <checksumPolicy>warn</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>${plugin.version.maven-exec-plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>${plugin.version.maven-install-plugin}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <version>${plugin.version.maven-shade-plugin}</version>
+          <configuration>
+            <shadedArtifactAttached>true</shadedArtifactAttached>
+            <shadedClassifierName>with-dependencies</shadedClassifierName>
+            <!-- no need for this since we are not consuming this artifact downstream -->
+            <createDependencyReducedPom>false</createDependencyReducedPom>
+            <artifactSet>
+              <excludes>
+                <!-- Classes provided by JSR-250 artifact are fully covered by javax.annotation-api artifact
+                     that comes with google-cloud-secretmanager (dependency of connector-runtime-cloud) -->
+                <exclude>javax.annotation:jsr250-api</exclude>
+              </excludes>
+            </artifactSet>
+            <filters>
+              <filter>
+                <artifact>*:*</artifact>
+                <excludes>
+                  <exclude>module-info.class</exclude>
+                  <exclude>META-INF/versions/9/module-info.class</exclude>
+                  <exclude>META-INF/DEPENDENCIES</exclude>
+                  <exclude>META-INF/MANIFEST.MF</exclude>
+                  <exclude>META-INF/*.SF</exclude>
+                  <exclude>META-INF/*.DSA</exclude>
+                  <exclude>META-INF/*.RSA</exclude>
+                </excludes>
+              </filter>
+            </filters>
+            <transformers>
+              <!-- This is needed if you have dependencies that use Service Loader. Most Google Cloud client libraries does. -->
+              <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+              <!-- This is needed to not repeat licenses in the META-INF directory -->
+              <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer"/>
+              <!-- This is needed to merge existing NOTICE files and keep them downstream -->
+              <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheNoticeResourceTransformer">
+                <addHeader>false</addHeader>
+              </transformer>
+              <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"/>
+            </transformers>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>package</phase>
+              <goals>
+                <goal>shade</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${plugin.version.maven-surefire-plugin}</version>
+          <configuration>
+            <redirectTestOutputToFile>true</redirectTestOutputToFile>
+            <runOrder>hourly</runOrder>
+            <argLine>-Duser.language=en -Duser.region=US</argLine>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>${plugin.version.maven-enforcer-plugin}</version>
+          <configuration>
+            <rules>
+              <!--
+                <dependencyConvergence />
+              -->
+              <requirePluginVersion/>
+            </rules>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>com.diffplug.spotless</groupId>
+          <artifactId>spotless-maven-plugin</artifactId>
+          <version>${plugin.version.spotless-maven-plugin}</version>
+          <configuration>
+            <formats>
+              <format>
+                <includes>
+                  <include>.gitignore</include>
+                </includes>
+                <trimTrailingWhitespace/>
+                <endWithNewline/>
+                <indent>
+                  <spaces>true</spaces>
+                  <spacesPerTab>2</spacesPerTab>
+                </indent>
+              </format>
+            </formats>
+            <java>
+              <googleJavaFormat/>
+              <removeUnusedImports />
+            </java>
+            <pom/>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>com.mycila</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <version>${plugin.version.license}</version>
+          <configuration>
+            <properties>
+              <owner>camunda services GmbH</owner>
+              <email>info@camunda.com</email>
+            </properties>
+            <mapping>
+              <java>SLASHSTAR_STYLE</java>
+            </mapping>
+            <skipExistingHeaders>false</skipExistingHeaders>
+            <licenseSets>
+              <licenseSet>
+                <inlineHeader>${license.inlineheader}</inlineHeader>
+                <includes>
+                  <include>**/*.java</include>
+                </includes>
+              </licenseSet>
+            </licenseSets>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <version>${plugin.version.license.codehaus}</version>
+          <configuration>
+            <useMissingFile>false</useMissingFile>
+            <deployMissingFile>false</deployMissingFile>
+            <licenseMerges>
+              <licenseMerge>Apache-2.0|Apache License 2.0|Apache License, Version 2.0|The Apache Software License, Version 2.0|Apache 2.0|Apache License, version 2.0|The Apache License, Version 2.0|Apache 2|Apache License|AL 2.0|ASL 2.0|Apache License v2.0</licenseMerge>
+              <licenseMerge>MIT|MIT License|The MIT License|MIT license|The MIT License (MIT)</licenseMerge>
+              <licenseMerge>MIT-0</licenseMerge>
+              <licenseMerge>BSD-2-Clause|BSD 2-Clause License</licenseMerge>
+              <licenseMerge>BSD-3-Clause|3-Clause BSD License|BSD|BSD New license|BSD 3-clause|The BSD License|BSD License 3</licenseMerge>
+              <licenseMerge>EPL-1.0|Eclipse Public License - v 1.0|Eclipse Public License v. 1.0|Eclipse Public License 1.0</licenseMerge>
+              <licenseMerge>EPL-2.0|Eclipse Public License v. 2.0|EPL 2.0</licenseMerge>
+              <licenseMerge>GPLv2|GPL v2</licenseMerge>
+              <licenseMerge>GPLv2 with Classpath Exception|GPL2 w/ CPE|GNU General Public License, version 2 with the GNU Classpath Exception|CDDL + GPLv2 with classpath exception</licenseMerge>
+              <licenseMerge>GNU Lesser General Public License, Version 2.1|GNU Lesser General Public License|LGPL, version 2.1|GNU LESSER GENERAL PUBLIC LICENSE, Version 2.1|LGPL-2.1-or-later</licenseMerge>
+              <licenseMerge>CDDLv1.0|COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0</licenseMerge>
+              <licenseMerge>Bouncy Castle|Bouncy Castle Licence</licenseMerge>
+              <licenseMerge>Go Licence</licenseMerge>
+              <licenseMerge>MPL 2.0</licenseMerge>
+              <licenseMerge>Public Domain, per Creative Commons CC0</licenseMerge>
+            </licenseMerges>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>3.8.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${plugin.version.maven-jar-plugin}</version>
+          <configuration combine.self="override">
+            <archive>
+              <!-- explicitly specify manifestFile because otherwise it overrides the generated one from bundle-plugin -->
+              <manifest>
+                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              </manifest>
+            </archive>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <!-- profile to auto format -->
+    <profile>
+      <id>autoFormat</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.diffplug.spotless</groupId>
+            <artifactId>spotless-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>spotless-format</id>
+                <goals>
+                  <goal>apply</goal>
+                </goals>
+                <phase>process-sources</phase>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>com.mycila</groupId>
+            <artifactId>license-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>add-license</id>
+                <goals>
+                  <goal>format</goal>
+                </goals>
+                <phase>process-sources</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- profile to perform strict validation checks -->
+    <profile>
+      <id>checkFormat</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.diffplug.spotless</groupId>
+            <artifactId>spotless-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>spotless-check</id>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+                <phase>validate</phase>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>com.mycila</groupId>
+            <artifactId>license-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>check-license</id>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+                <phase>validate</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>sonatype-oss-release</id>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-gpg-plugin</artifactId>
+              <configuration>
+                <gpgArguments>
+                  <arg>--pinentry-mode</arg>
+                  <arg>loopback</arg>
+                </gpgArguments>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <configuration>
+              <rules>
+                <requireReleaseDeps/>
+              </rules>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>
