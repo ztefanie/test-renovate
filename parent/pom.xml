@@ -71,7 +71,7 @@ limitations under the License.</license.inlineheader>
     <nexus.sonatype.url>https://s01.oss.sonatype.org</nexus.sonatype.url>
 
     <!-- Camunda internal libraries -->
-    <version.zeebe>8.5.16</version.zeebe>
+
     <version.feel-engine>1.17.7</version.feel-engine>
     <version.spring-zeebe>8.5.18</version.spring-zeebe>
     <version.identity-sdk>8.5.5</version.identity-sdk>
@@ -280,7 +280,7 @@ limitations under the License.</license.inlineheader>
       <dependency>
         <groupId>io.camunda</groupId>
         <artifactId>zeebe-client-java</artifactId>
-        <version>${version.zeebe}</version>
+        <version>8.5.16</version>
       </dependency>
 
       <dependency>
