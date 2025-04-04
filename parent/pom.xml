@@ -479,7 +479,7 @@ limitations under the License.</license.inlineheader>
       <dependency>
         <groupId>com.nimbusds</groupId>
         <artifactId>nimbus-jose-jwt</artifactId>
-        <version>10.0.2</version>
+        <version>10.1</version>
       </dependency>
 
       <!-- Fixes CWE-835 -->
