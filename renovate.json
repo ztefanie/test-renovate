@@ -45,6 +45,11 @@
       "matchPackageNames": [
         "io.camunda*"
       ],
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "replacement"
+      ],
       "enabled": false
     },
     {
