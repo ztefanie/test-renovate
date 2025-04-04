@@ -48,10 +48,6 @@
       "enabled": false
     },
     {
-      "matchPackageNames": ["io.camunda:zeebe-client-java"],
-      "enabled": false
-    },
-    {
       "matchPackagePrefixes": [
         "io.camunda.connector"
       ],
