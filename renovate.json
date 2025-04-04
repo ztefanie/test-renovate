@@ -47,15 +47,16 @@
       ],
       "matchUpdateTypes": [
         "major",
-        "minor"
+        "minor",
+        "replacement"
       ],
       "enabled": false
     },
     {
-      "matchPackagePrefixes": [
-        "io.camunda.connector"
-      ],
-      "enabled": false
+      "enabled": false,
+      "matchPackageNames": [
+        "io.camunda.connector{/,}**"
+      ]
     }
   ],
   "baseBranches": [
