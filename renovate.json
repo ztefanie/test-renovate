@@ -39,16 +39,8 @@
       "enabled": false
     },
     {
-      "matchBaseBranches": [
-        "release/*"
-      ],
       "matchPackageNames": [
         "io.camunda*"
-      ],
-      "matchUpdateTypes": [
-        "major",
-        "minor",
-        "replacement"
       ],
       "enabled": false
     },
