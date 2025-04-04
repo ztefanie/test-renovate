@@ -53,8 +53,8 @@
       "enabled": false
     },
     {
-      "matchPackagePrefixes": [
-        "io.camunda.connector"
+      "matchPackageNames": [
+        "io.camunda.connector{/,}**"
       ],
       "enabled": false
     }
