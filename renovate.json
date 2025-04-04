@@ -39,6 +39,9 @@
       "enabled": false
     },
     {
+      "matchBaseBranches": [
+        "release/*"
+      ],
       "matchPackageNames": [
         "io.camunda*"
       ],
