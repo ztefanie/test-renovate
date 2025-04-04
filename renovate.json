@@ -31,7 +31,7 @@
     },
     {
       "matchBaseBranches": [
-        "/^release/.*/"
+        "release/*"
       ],
       "matchUpdateTypes": [
         "major"
@@ -40,10 +40,10 @@
     },
     {
       "matchBaseBranches": [
-        "/^release/.*/"
+        "release/*"
       ],
       "matchPackageNames": [
-        "io.camunda**"
+        "io.camunda*"
       ],
       "matchUpdateTypes": [
         "major",
