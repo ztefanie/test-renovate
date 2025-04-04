@@ -52,6 +52,9 @@
         "io.camunda.connector"
       ],
       "enabled": false
+    },
+    {
+      "replacements": []
     }
   ],
   "baseBranches": [
