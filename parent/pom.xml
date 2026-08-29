@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.camunda</groupId>
     <artifactId>camunda-release-parent</artifactId>
-    <version>3.9.1</version>
+    <version>3.10.0</version>
     <!-- do not remove empty tag - http://jira.codehaus.org/browse/MNG-4687 -->
     <relativePath/>
   </parent>
@@ -72,27 +72,27 @@
 
     <!-- Camunda internal libraries -->
     <version.zeebe>8.6.12</version.zeebe>
-    <version.feel-engine>1.19.3</version.feel-engine>
-    <version.spring-zeebe>8.5.18</version.spring-zeebe>
+    <version.feel-engine>1.22.0</version.feel-engine>
+    <version.spring-zeebe>8.5.23</version.spring-zeebe>
     <version.identity-sdk>8.6.9</version.identity-sdk>
 
     <!-- Third party dependencies -->
 
     <version.jakarta-validation>3.1.1</version.jakarta-validation>
-    <version.mockito>5.17.0</version.mockito>
-    <version.junit-jupiter>5.12.2</version.junit-jupiter>
-    <version.assertj>3.27.3</version.assertj>
-    <version.jackson-bom>2.19.0</version.jackson-bom>
-    <version.jackson-datatype-jsr310>2.19.0</version.jackson-datatype-jsr310>
-    <version.hibernate-validator>8.0.2.Final</version.hibernate-validator>
+    <version.mockito>5.23.0</version.mockito>
+    <version.junit-jupiter>5.14.4</version.junit-jupiter>
+    <version.assertj>3.27.7</version.assertj>
+    <version.jackson-bom>2.22.2</version.jackson-bom>
+    <version.jackson-datatype-jsr310>2.22.2</version.jackson-datatype-jsr310>
+    <version.hibernate-validator>8.0.5.Final</version.hibernate-validator>
     <version.jsonassert>1.5.3</version.jsonassert>
     <version.failsafe>3.3.2</version.failsafe>
 
-    <version.spring-boot>3.4.5</version.spring-boot>
-    <version.spring-cloud-gcp-starter-logging>5.11.3</version.spring-cloud-gcp-starter-logging>
-    <version.logback>1.5.18</version.logback>
+    <version.spring-boot>3.5.16</version.spring-boot>
+    <version.spring-cloud-gcp-starter-logging>5.13.11</version.spring-cloud-gcp-starter-logging>
+    <version.logback>1.6.3</version.logback>
 
-    <version.aws-java-sdk>1.12.782</version.aws-java-sdk>
+    <version.aws-java-sdk>1.12.797</version.aws-java-sdk>
     <version.software-aws-java-sdk>2.28.23</version.software-aws-java-sdk>
     <version.aws-lambda-java-events>3.14.0</version.aws-lambda-java-events>
     <version.aws-lambda-java-core>1.2.3</version.aws-lambda-java-core>
@@ -100,56 +100,56 @@
 
     <version.localstack>1.20.6</version.localstack>
 
-    <version.google-api-client>2.7.2</version.google-api-client>
-    <version.google-api-services-drive>v3-rev20250329-2.0.0</version.google-api-services-drive>
+    <version.google-api-client>2.9.0</version.google-api-client>
+    <version.google-api-services-drive>v3-rev20260823-2.0.0</version.google-api-services-drive>
     <version.google-oauth-client-jetty>1.39.0</version.google-oauth-client-jetty>
-    <version.google-auth-library-oauth2-http>1.33.1</version.google-auth-library-oauth2-http>
-    <version.google-api-services-docs>v1-rev20250325-2.0.0</version.google-api-services-docs>
-    <version.google-api-services-sheets>v4-rev20250415-2.0.0</version.google-api-services-sheets>
-    <version.google-libraries-bom>26.59.0</version.google-libraries-bom>
+    <version.google-auth-library-oauth2-http>1.51.0</version.google-auth-library-oauth2-http>
+    <version.google-api-services-docs>v1-rev20260427-2.0.0</version.google-api-services-docs>
+    <version.google-api-services-sheets>v4-rev20260610-2.0.0</version.google-api-services-sheets>
+    <version.google-libraries-bom>26.87.0</version.google-libraries-bom>
     <version.gson-extras>1.3.0</version.gson-extras>
 
     <version.httpcore>4.4.16</version.httpcore>
-    <version.httpcore5>5.3.4</version.httpcore5>
-    <version.httpclient5>5.4.4</version.httpclient5>
+    <version.httpcore5>5.4.3</version.httpcore5>
+    <version.httpclient5>5.6.4</version.httpclient5>
 
     <version.commons-io>2.16.1</version.commons-io>
     <version.commons-codec>1.16.1</version.commons-codec>
 
-    <version.kafka-clients>3.9.0</version.kafka-clients>
+    <version.kafka-clients>3.9.2</version.kafka-clients>
 
-    <version.microsoft-graph>6.36.0</version.microsoft-graph>
-    <version.azure-identity>1.15.4</version.azure-identity>
+    <version.microsoft-graph>6.67.0</version.microsoft-graph>
+    <version.azure-identity>1.18.5</version.azure-identity>
 
-    <version.bouncycastle>1.80</version.bouncycastle>
+    <version.bouncycastle>1.85</version.bouncycastle>
     <version.sendGrid>4.10.3</version.sendGrid>
 
-    <version.slack>1.45.3</version.slack>
+    <version.slack>1.51.0</version.slack>
 
-    <version.testcontainers>1.21.0</version.testcontainers>
+    <version.testcontainers>1.21.4</version.testcontainers>
     <version.awaitility>4.3.0</version.awaitility>
-    <version.json-path>2.9.0</version.json-path>
+    <version.json-path>2.10.0</version.json-path>
 
     <version.snappy-java>1.1.10.7</version.snappy-java>
     <version.commons-codec>1.17.1</version.commons-codec>
     <version.guava>33.3.1-jre</version.guava>
     <version.javax.xml.bind>2.4.0-b180830.0359</version.javax.xml.bind>
 
-    <version.wiremock>3.13.0</version.wiremock>
+    <version.wiremock>3.13.2</version.wiremock>
     <version.auth0.jwt>4.4.0</version.auth0.jwt>
     <version.auth0.jwks>0.22.1</version.auth0.jwks>
 
     <!-- maven plugins (not managed by parent) -->
-    <plugin.version.maven-enforcer-plugin>3.5.0</plugin.version.maven-enforcer-plugin>
-    <plugin.version.maven-exec-plugin>3.5.0</plugin.version.maven-exec-plugin>
+    <plugin.version.maven-enforcer-plugin>3.6.3</plugin.version.maven-enforcer-plugin>
+    <plugin.version.maven-exec-plugin>3.6.3</plugin.version.maven-exec-plugin>
     <plugin.version.maven-install-plugin>3.1.4</plugin.version.maven-install-plugin>
     <plugin.version.license>4.6</plugin.version.license>
-    <plugin.version.license.codehaus>2.5.0</plugin.version.license.codehaus>
+    <plugin.version.license.codehaus>2.7.1</plugin.version.license.codehaus>
     <plugin.version.maven-resources-plugin>3.2.0</plugin.version.maven-resources-plugin>
-    <plugin.version.maven-shade-plugin>3.6.0</plugin.version.maven-shade-plugin>
-    <plugin.version.maven-surefire-plugin>3.5.3</plugin.version.maven-surefire-plugin>
-    <plugin.version.spotless-maven-plugin>2.44.4</plugin.version.spotless-maven-plugin>
-    <plugin.version.maven-jar-plugin>3.4.2</plugin.version.maven-jar-plugin>
+    <plugin.version.maven-shade-plugin>3.6.2</plugin.version.maven-shade-plugin>
+    <plugin.version.maven-surefire-plugin>3.5.6</plugin.version.maven-surefire-plugin>
+    <plugin.version.spotless-maven-plugin>2.46.1</plugin.version.spotless-maven-plugin>
+    <plugin.version.maven-jar-plugin>3.5.1</plugin.version.maven-jar-plugin>
   </properties>
 
   <dependencyManagement>
@@ -464,22 +464,22 @@
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-text</artifactId>
-        <version>1.13.1</version>
+        <version>1.15.0</version>
       </dependency>
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-lang3</artifactId>
-        <version>3.17.0</version>
+        <version>3.20.0</version>
       </dependency>
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-collections4</artifactId>
-        <version>4.5.0</version>
+        <version>4.6.0</version>
       </dependency>
       <dependency>
         <groupId>org.jetbrains</groupId>
         <artifactId>annotations</artifactId>
-        <version>26.0.2</version>
+        <version>26.1.0</version>
       </dependency>
 
 
@@ -494,20 +494,20 @@
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-compress</artifactId>
-        <version>1.27.1</version>
+        <version>1.28.0</version>
       </dependency>
 
       <!-- FIXME: maven resolves protobuf to 3.21.x while zeebe-client is compiled for 3.22.2. This is a temporary fix to be reassessed later. -->
       <dependency>
         <groupId>com.google.protobuf</groupId>
         <artifactId>protobuf-java</artifactId>
-        <version>3.25.7</version>
+        <version>3.25.9</version>
       </dependency>
       <!-- Fix CVE-2024-7254 -->
       <dependency>
         <groupId>com.google.protobuf</groupId>
         <artifactId>protobuf-java-util</artifactId>
-        <version>3.25.7</version>
+        <version>3.25.9</version>
       </dependency>
 
       <dependency>
@@ -828,7 +828,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.8.1</version>
+          <version>3.11.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
